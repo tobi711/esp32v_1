@@ -150,4 +150,6 @@ extern TimerHandle_t WifiChanTimer;
 extern Timezone myTZ;
 extern RTC_DATA_ATTR runmode_t RTC_runmode;
 
+extern uint16_t hash_macs[20]; 
+
 #endif

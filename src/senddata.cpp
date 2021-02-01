@@ -86,8 +86,11 @@ void sendData() {
 #if ((WIFICOUNTER) || (BLECOUNTER))
     case COUNT_DATA:
       payload.reset();
+      //hinzufügen hash_macs array 
 #if !(PAYLOAD_OPENSENSEBOX)
       payload.addCount(macs_wifi, MAC_SNIFF_WIFI);
+      payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI); 
+
       if (cfg.blescan)
         payload.addCount(macs_ble, MAC_SNIFF_BLE);
 #endif
@@ -161,7 +164,8 @@ void sendData() {
 #if (HAS_SENSOR_2)
     case SENSOR2_DATA:
       payload.reset();
-      payload.addSensor(sensor_read(2));
+      //payload.addSensor(sensor_read(2));
+      payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI); 
       SendPayload(SENSOR2PORT);
       break;
 #endif

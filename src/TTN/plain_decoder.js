@@ -90,5 +90,17 @@ function Decoder(bytes, port) {
     }
   }
 
+  // User data 
+  if (port === 11) {
+    var i = 0;
+    var j = 2; 
+    var z= 4;
+    if (bytes.length >= 2) {
+      decoded.macsBuffer = (bytes[i++] << 8) | bytes[i++];
+      decoded.macsBuffer2 = (bytes[j++] << 8) | bytes[j++];
+      decoded.macsBuffer3 = (bytes[z++] << 8) | bytes[z++];
+    }
+  }
+
   return decoded;
 }

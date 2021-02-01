@@ -11,6 +11,8 @@ TaskHandle_t macProcessTask;
 
 static uint32_t salt = renew_salt();
 
+uint16_t hash_macs[20]; 
+
 uint32_t renew_salt(void) {
   salt = esp_random();
   ESP_LOGV(TAG, "new salt = %04X", salt);
@@ -106,6 +108,8 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
   uint32_t saltedmac;
   uint16_t hashedmac;
 
+  
+
   if ((cfg.rssilimit) &&
       (MacBuffer.rssi < cfg.rssilimit)) { // rssi is negative value
     ESP_LOGI(TAG, "%s RSSI %d -> ignoring (limit: %d)",
@@ -136,11 +140,14 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
   // https://en.wikipedia.org/wiki/MAC_Address_Anonymization
 
   // reversed 4 byte MAC added to current salt
-  saltedmac = *mac + salt;
+
+  //saltedmac = *mac + salt;
+  saltedmac = *mac; 
 
   // hashed 4 byte MAC
   // to save RAM, we use only lower 2 bytes of hash, since collisions don't
   // matter in our use case
+
   hashedmac = hash((const char *)&saltedmac, 4);
 
   auto newmac = macs.insert(hashedmac); // add hashed MAC, if new unique
@@ -155,12 +162,20 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
     case MAC_SNIFF_WIFI:
       macs_wifi++; // increment Wifi MACs counter
       blink_LED(COLOR_GREEN, 50);
+
+      //hinzufügen von mac adresse
+
+      memcpy(hash_macs, &hashedmac, 8);
+      printf("\n macsniff cpp ausgabe von hash_macs array %i", *hash_macs); 
+     
+
       break;
 
     case MAC_SNIFF_BLE:
       macs_ble++; // increment BLE Macs counter
       blink_LED(COLOR_MAGENTA, 50);
       break;
+
 #if (COUNT_ENS)
     case MAC_SNIFF_BLE_ENS:
       macs_ble++;             // increment BLE Macs counter

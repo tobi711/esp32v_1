@@ -25,6 +25,11 @@ void PayloadConvert::addCount(uint16_t value, uint8_t snifftype) {
   buffer[cursor++] = lowByte(value);
 }
 
+void PayloadConvert::addMacAdr(uint16_t value, uint8_t snifftype) {
+  buffer[cursor++] = highByte(value);
+  buffer[cursor++] = lowByte(value);
+}
+
 void PayloadConvert::addAlarm(int8_t rssi, uint8_t msg) {
   buffer[cursor++] = rssi;
   buffer[cursor++] = msg;

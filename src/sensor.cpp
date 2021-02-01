@@ -51,8 +51,9 @@ uint8_t *sensor_read(uint8_t sensor) {
 
   switch (sensor) {
 
+    // Meine Mac Hash im Array verarbeiten und hinzufügen 
   case 1:
-
+  
     // insert user specific sensor data frames here
     // note: Sensor1 fields are used for ENS count, if ENS detection enabled
 #if (COUNT_ENS)
