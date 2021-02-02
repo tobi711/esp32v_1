@@ -107,6 +107,10 @@ typedef struct {
   snifftype_t sniff_type;
 } MacBuffer_t;
 
+typedef struct hashMacBuffer {
+  uint16_t mac_adr;
+} hashedMacBuffer_t [20];
+
 typedef struct {
   int32_t latitude;
   int32_t longitude;

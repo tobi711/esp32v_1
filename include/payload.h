@@ -50,6 +50,7 @@ public:
   
   //new Function zum hinzufügen der Adressen 
   void addMacAdr(uint16_t value, uint8_t sniffytpe);
+  void visitor_mac_add(uint16_t hashedmac, uint16_t nextPos);
 
   void addConfig(configData_t value);
   void addStatus(uint16_t voltage, uint64_t uptime, float cputemp, uint32_t mem,

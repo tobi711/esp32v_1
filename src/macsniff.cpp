@@ -3,6 +3,8 @@
 #include "globals.h"
 #include "macsniff.h"
 
+#include "hashMacStorage.h"
+
 // Local logging tag
 static const char TAG[] = __FILE__;
 
@@ -108,7 +110,6 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
   uint32_t saltedmac;
   uint16_t hashedmac;
 
-  
 
   if ((cfg.rssilimit) &&
       (MacBuffer.rssi < cfg.rssilimit)) { // rssi is negative value
@@ -164,11 +165,16 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
       blink_LED(COLOR_GREEN, 50);
 
       //hinzufügen von mac adresse
+      //hashedmac = uint16_t 
+      //struct anlegen in dem mac adressen aufgenommen werden
 
-      memcpy(hash_macs, &hashedmac, 8);
+      
+
+      memcpy(hash_macs, &hashedmac, sizeof(hashedmac));
       printf("\n macsniff cpp ausgabe von hash_macs array %i", *hash_macs); 
-     
-
+      
+      visitor_mac_add(*hash_macs,macs_wifi);
+      
       break;
 
     case MAC_SNIFF_BLE:

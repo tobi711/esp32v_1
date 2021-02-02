@@ -1,6 +1,8 @@
 // Basic Config
 #include "senddata.h"
 
+#include "hashMacStorage.h"
+
 Ticker sendTimer;
 
 void setSendIRQ() {
@@ -89,7 +91,7 @@ void sendData() {
       //hinzufügen hash_macs array 
 #if !(PAYLOAD_OPENSENSEBOX)
       payload.addCount(macs_wifi, MAC_SNIFF_WIFI);
-      payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI); 
+      //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI); 
 
       if (cfg.blescan)
         payload.addCount(macs_ble, MAC_SNIFF_BLE);
@@ -163,10 +165,22 @@ void sendData() {
 #endif
 #if (HAS_SENSOR_2)
     case SENSOR2_DATA:
+
+    hashedMacBuffer_t storage;
+
       payload.reset();
       //payload.addSensor(sensor_read(2));
-      payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI); 
+      //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI);
+
+      //for(int i = 0; i < macs_wifi ; i++){
+       //  payload.addMacAdr(macs_buff[i].mac_adr, MAC_SNIFF_WIFI);      }
+
+      payload.addMacAdr(storage[0].mac_adr, MAC_SNIFF_WIFI); // 2 Byte 
+      payload.addMacAdr(storage[1].mac_adr, MAC_SNIFF_WIFI);
+
       SendPayload(SENSOR2PORT);
+      clear_storage(storage);
+
       break;
 #endif
 #if (HAS_SENSOR_3)
