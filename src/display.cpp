@@ -444,8 +444,16 @@ void dp_drawPage(time_t t, bool nextpage) {
   // ---------- page 4: time ----------
   case 4:
 
-    dp_setFont(MY_FONT_LARGE);
+    dp_setFont(MY_FONT_NORMAL);
+    
+    dp_setTextCursor(0, 2);
+    dp_printf("Tobias Werz");
+    dp_setTextCursor(0, 3);
+    dp_printf("Besucherstrom");
     dp_setTextCursor(0, 4);
+    dp_printf("Messstation 1");
+
+    dp_setTextCursor(0, 6);
     dp_printf("%02d:%02d:%02d", hour(t), minute(t), second(t));
     break;
 
