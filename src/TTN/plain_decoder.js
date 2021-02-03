@@ -92,22 +92,45 @@ function Decoder(bytes, port) {
 
   // User data + with for loop 
   if (port === 11) {
+
     var i = 0;
     var j = 2;
     var z= 4; 
     var u = 6;
     var o = 8;
     var p= 10; 
-    
+    var w = 12;
+    var e = 14;
+    var r= 16; 
+    var g= 18;
+
+    // 16 MACs = 32 Bytes 
     if (bytes.length >= 2) {
-      decoded.macsBuffer = (bytes[i++] << 8) | bytes[i++];
+
+      decoded.macsBuffer1 = (bytes[i++] << 8) | bytes[i++];
       decoded.macsBuffer2 = (bytes[j++] << 8) | bytes[j++];
       decoded.macsBuffer3 = (bytes[z++] << 8) | bytes[z++];
       decoded.macsBuffer4 = (bytes[u++] << 8) | bytes[u++];
       decoded.macsBuffer5 = (bytes[o++] << 8) | bytes[o++];
-      decoded.macsBuffer6 = (bytes[p++] << 8) | bytes[p++];
+      decoded.macsBuffer6 = (bytes[p++] << 8) | bytes[p++]; 
+      decoded.macsBuffer7 = (bytes[w++] << 8) | bytes[w++]; 
+      decoded.macsBuffer8 = (bytes[e++] << 8) | bytes[e++]; 
+      decoded.macsBuffer9 = (bytes[r++] << 8) | bytes[r++]; 
+
+      decoded.macsBufferA = (bytes[g++] << 8) | bytes[g++]; 
+      decoded.macsBufferB = (bytes[g+2] << 8) | bytes[g+2]; 
+      decoded.macsBufferC = (bytes[g+4] << 8) | bytes[g+4]; 
+      decoded.macsBufferD = (bytes[g+6] << 8) | bytes[g+6]; 
+      decoded.macsBufferE = (bytes[g+8] << 8) | bytes[g+8]; 
+      decoded.macsBufferF = (bytes[g+10] << 8) | bytes[g+10]; 
+      decoded.macsBufferG = (bytes[g+12] << 8) | bytes[g+12]; 
+
     }
-  }
+
+    }
+  
+
+    
 
   return decoded;
 }

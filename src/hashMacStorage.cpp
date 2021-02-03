@@ -6,18 +6,18 @@
 
 hashedMacBuffer_t storage [20]; 
 
+//reset sctruct 
 void clear_storage(hashedMacBuffer_t storage){
   storage->mac_adr = {};
-  printf("\nClear Struct !!! \n "); 
-
+  printf("\nClear Struct! \n "); 
 }
 
+//print actual visitor information 
 void visitor_ausgabe(hashedMacBuffer_t storage) {
-  
   printf("\nID MAC %i ", storage->mac_adr); 
-  
 }
 
+//add a mac adress to the struct 
 void visitor_mac_add(uint16_t hashedmac, int8_t nextPos) {
 
   printf("\nMAC die reinkommt add %i ",hashedmac); 
@@ -29,18 +29,10 @@ void visitor_mac_add(uint16_t hashedmac, int8_t nextPos) {
   storage[count]->mac_adr = hashedmac;  
 
   visitor_ausgabe(storage[count]);
-
-  /* using memcpy to copy string: 
-  memcpy ( person.name, myname, strlen(myname)+1 );
-  person.age = 46;
-  using memcpy to copy structure: 
-  memcpy ( &person_copy, &person, sizeof(person) );
-  printf ("person_copy: %s, %d \n", person_copy.name, person_copy.age );*/
-
 }
 
+//return mac to send data 
 int return_visitor_mac(int pos){
-
 
 	int visitor_mac;
 
@@ -48,9 +40,5 @@ int return_visitor_mac(int pos){
 
 	return visitor_mac;
 }
-
-
-
-
 
 #endif

@@ -173,17 +173,16 @@ void sendData() {
       //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI);
 
       int mac_Adresse; 
+      //sende nur die nötigen bytes keine leere bytes 
 
-      for(int i = 0; i < 7; i++){
+      for(int i = 0; i < 16; i++){
           mac_Adresse = return_visitor_mac(i);
           printf("\n--------->>> MAC adresse Storage %i ", mac_Adresse); 
           payload.addMacAdr(mac_Adresse, MAC_SNIFF_WIFI);      
           } 
 
   /*
-      mac_Adresse = return_visitor_mac(1);
       printf("---------MAC adresse Storage [0] %i ", mac_Adresse); 
-      
       payload.addMacAdr(storage[1].mac_adr, MAC_SNIFF_WIFI); // 2 Byte 
       payload.addMacAdr(storage[2].mac_adr, MAC_SNIFF_WIFI);
       payload.addMacAdr(storage[3].mac_adr, MAC_SNIFF_WIFI);
