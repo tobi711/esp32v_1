@@ -8,7 +8,10 @@
 
 void visitor_mac_add(uint16_t hashedmac, int8_t nextPos);
 void visitor_ausgabe();
-void clear_storage(hashedMacBuffer_t macs_buff);
+void clear_storage(hashedMacBuffer_t storage);
+
+//return fuer senddata 
+int return_visitor_mac(int pos);
 
 
 

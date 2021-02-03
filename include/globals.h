@@ -109,7 +109,7 @@ typedef struct {
 
 typedef struct hashMacBuffer {
   uint16_t mac_adr;
-} hashedMacBuffer_t [20];
+} hashedMacBuffer_t [20]; //Objekt angelegt von Typ hashMacBuffer mit 20 Datensätzen
 
 typedef struct {
   int32_t latitude;

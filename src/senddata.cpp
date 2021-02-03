@@ -172,11 +172,22 @@ void sendData() {
       //payload.addSensor(sensor_read(2));
       //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI);
 
-      //for(int i = 0; i < macs_wifi ; i++){
-       //  payload.addMacAdr(macs_buff[i].mac_adr, MAC_SNIFF_WIFI);      }
+      int mac_Adresse; 
 
-      payload.addMacAdr(storage[0].mac_adr, MAC_SNIFF_WIFI); // 2 Byte 
-      payload.addMacAdr(storage[1].mac_adr, MAC_SNIFF_WIFI);
+      for(int i = 0; i < 7; i++){
+          mac_Adresse = return_visitor_mac(i);
+          printf("\n--------->>> MAC adresse Storage %i ", mac_Adresse); 
+          payload.addMacAdr(mac_Adresse, MAC_SNIFF_WIFI);      
+          } 
+
+  /*
+      mac_Adresse = return_visitor_mac(1);
+      printf("---------MAC adresse Storage [0] %i ", mac_Adresse); 
+      
+      payload.addMacAdr(storage[1].mac_adr, MAC_SNIFF_WIFI); // 2 Byte 
+      payload.addMacAdr(storage[2].mac_adr, MAC_SNIFF_WIFI);
+      payload.addMacAdr(storage[3].mac_adr, MAC_SNIFF_WIFI);
+  */
 
       SendPayload(SENSOR2PORT);
       clear_storage(storage);

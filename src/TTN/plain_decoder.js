@@ -90,15 +90,22 @@ function Decoder(bytes, port) {
     }
   }
 
-  // User data 
+  // User data + with for loop 
   if (port === 11) {
     var i = 0;
-    var j = 2; 
-    var z= 4;
+    var j = 2;
+    var z= 4; 
+    var u = 6;
+    var o = 8;
+    var p= 10; 
+    
     if (bytes.length >= 2) {
       decoded.macsBuffer = (bytes[i++] << 8) | bytes[i++];
       decoded.macsBuffer2 = (bytes[j++] << 8) | bytes[j++];
       decoded.macsBuffer3 = (bytes[z++] << 8) | bytes[z++];
+      decoded.macsBuffer4 = (bytes[u++] << 8) | bytes[u++];
+      decoded.macsBuffer5 = (bytes[o++] << 8) | bytes[o++];
+      decoded.macsBuffer6 = (bytes[p++] << 8) | bytes[p++];
     }
   }
 
