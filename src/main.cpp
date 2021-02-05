@@ -94,6 +94,7 @@ uint8_t volatile channel = WIFI_CHANNEL_MIN;   // channel rotation counter
 uint8_t volatile rf_load = 0;                  // RF traffic indicator
 uint16_t volatile macs_wifi = 0, macs_ble = 0; // globals for display
 
+
 //anlegen von neuer variablen im Array
 //uint16_t hash_macs[]; 
 

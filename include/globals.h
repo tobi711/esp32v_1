@@ -107,6 +107,10 @@ typedef struct {
   snifftype_t sniff_type;
 } MacBuffer_t;
 
+typedef struct hashMacBuffer {
+  uint16_t mac_adr;
+} hashedMacBuffer_t [25]; //Objekt angelegt von Typ hashMacBuffer mit 25 Datensätzen
+
 typedef struct {
   int32_t latitude;
   int32_t longitude;
@@ -150,6 +154,7 @@ extern TimerHandle_t WifiChanTimer;
 extern Timezone myTZ;
 extern RTC_DATA_ATTR runmode_t RTC_runmode;
 
-extern uint16_t hash_macs[20]; 
+extern uint16_t hash_macs[5]; 
+extern uint16_t volatile maxPayloadBytes;
 
 #endif
