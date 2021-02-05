@@ -155,5 +155,6 @@ extern Timezone myTZ;
 extern RTC_DATA_ATTR runmode_t RTC_runmode;
 
 extern uint16_t hash_macs[5]; 
+extern uint16_t volatile maxPayloadBytes;
 
 #endif

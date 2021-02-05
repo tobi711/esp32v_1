@@ -165,14 +165,13 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
       blink_LED(COLOR_GREEN, 50);
 
       //hinzufügen von mac adresse
-      //hashedmac = uint16_t 
       //struct anlegen in dem mac adressen aufgenommen werden
       printf("\n Aktueller Counter Stand --> %i ", macs_wifi);
 
       memcpy(hash_macs, &hashedmac, sizeof(hashedmac));
-      printf("\n macsniff cpp ausgabe von hash_macs * array %i", *hash_macs); 
+      printf("\n macsniff cpp ausgabe von pointer hash_macs * array %i", *hash_macs); 
 
-      printf("\n macsniff cpp ausgabe von hashdemac  array %i", hashedmac); 
+      printf("\n macsniff cpp ausgabe von hashdemac %i", hashedmac); 
       visitor_mac_add(hashedmac,macs_wifi);
       
       break;

@@ -4,10 +4,10 @@
 
 #if (WIFICOUNTER)
 
-// 25 Personen anlegen da 25 * 2 Bytes = 50 Bytes Mac PAyload = 51 Bytes 
+// 25 Personen anlegen da 25 * 2 Bytes = 50 Bytes Mac Payload = 51 Bytes 
 hashedMacBuffer_t storage [25]; 
 
-//reset sctruct 
+//reset struct 
 void clear_storage(hashedMacBuffer_t storage){
   storage->mac_adr = {};
   printf("\nClear Struct! \n "); 

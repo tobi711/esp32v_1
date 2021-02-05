@@ -5,6 +5,8 @@
 
 Ticker sendTimer;
 
+uint16_t volatile maxPayloadBytes = 0; 
+
 void setSendIRQ() {
   xTaskNotify(irqHandlerTask, SENDCYCLE_IRQ, eSetBits);
 }
@@ -93,13 +95,12 @@ void sendData() {
       payload.addCount(macs_wifi, MAC_SNIFF_WIFI);
       //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI); 
 
-  
-
       if (cfg.blescan)
         payload.addCount(macs_ble, MAC_SNIFF_BLE);
 #endif
-
-    int maxPayloadBytes = macs_wifi; 
+      //write Counter in maxPayloadBytes for limit Payload Data    
+      maxPayloadBytes = macs_wifi; 
+    
 #if (HAS_GPS)
       if (GPSPORT == COUNTERPORT) {
         // send GPS position only if we have a fix
@@ -187,7 +188,8 @@ void sendData() {
         } 
 
       SendPayload(SENSOR2PORT);
-    //clear_storage(storage);
+
+      //clear_storage(storage);
 
       break;
 #endif
