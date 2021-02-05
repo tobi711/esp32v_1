@@ -5,6 +5,8 @@
 
 Ticker sendTimer;
 
+uint16_t volatile maxPayloadBytes = 0; 
+
 void setSendIRQ() {
   xTaskNotify(irqHandlerTask, SENDCYCLE_IRQ, eSetBits);
 }
@@ -96,6 +98,9 @@ void sendData() {
       if (cfg.blescan)
         payload.addCount(macs_ble, MAC_SNIFF_BLE);
 #endif
+      //write Counter in maxPayloadBytes for limit Payload Data    
+      maxPayloadBytes = macs_wifi; 
+    
 #if (HAS_GPS)
       if (GPSPORT == COUNTERPORT) {
         // send GPS position only if we have a fix
@@ -166,30 +171,25 @@ void sendData() {
 #if (HAS_SENSOR_2)
     case SENSOR2_DATA:
 
-    hashedMacBuffer_t storage;
+    //hashedMacBuffer_t storage;
 
       payload.reset();
-      //payload.addSensor(sensor_read(2));
+     
       //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI);
 
-      int mac_Adresse; 
+      uint16_t mac_Adresse; 
       //sende nur die nötigen bytes keine leere bytes 
+      //nur neue Werte einfügen länge der neuen Werte 
 
-      for(int i = 0; i < 16; i++){
+      for(int i = 0; i < maxPayloadBytes; i++){
           mac_Adresse = return_visitor_mac(i);
           printf("\n--------->>> MAC adresse Storage %i ", mac_Adresse); 
           payload.addMacAdr(mac_Adresse, MAC_SNIFF_WIFI);      
-          } 
-
-  /*
-      printf("---------MAC adresse Storage [0] %i ", mac_Adresse); 
-      payload.addMacAdr(storage[1].mac_adr, MAC_SNIFF_WIFI); // 2 Byte 
-      payload.addMacAdr(storage[2].mac_adr, MAC_SNIFF_WIFI);
-      payload.addMacAdr(storage[3].mac_adr, MAC_SNIFF_WIFI);
-  */
+        } 
 
       SendPayload(SENSOR2PORT);
-      clear_storage(storage);
+
+      //clear_storage(storage);
 
       break;
 #endif
