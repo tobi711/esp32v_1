@@ -13,7 +13,7 @@ TaskHandle_t macProcessTask;
 
 static uint32_t salt = renew_salt();
 
-uint16_t hash_macs[20]; 
+uint16_t hash_macs[5]; 
 
 uint32_t renew_salt(void) {
   salt = esp_random();
@@ -167,13 +167,13 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
       //hinzufügen von mac adresse
       //hashedmac = uint16_t 
       //struct anlegen in dem mac adressen aufgenommen werden
-
       printf("\n Aktueller Counter Stand --> %i ", macs_wifi);
 
       memcpy(hash_macs, &hashedmac, sizeof(hashedmac));
-      printf("\n macsniff cpp ausgabe von hash_macs array %i", *hash_macs); 
-      
-      visitor_mac_add(*hash_macs,macs_wifi);
+      printf("\n macsniff cpp ausgabe von hash_macs * array %i", *hash_macs); 
+
+      printf("\n macsniff cpp ausgabe von hashdemac  array %i", hashedmac); 
+      visitor_mac_add(hashedmac,macs_wifi);
       
       break;
 

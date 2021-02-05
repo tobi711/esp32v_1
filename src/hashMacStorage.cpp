@@ -4,7 +4,8 @@
 
 #if (WIFICOUNTER)
 
-hashedMacBuffer_t storage [20]; 
+// 25 Personen anlegen da 25 * 2 Bytes = 50 Bytes Mac PAyload = 51 Bytes 
+hashedMacBuffer_t storage [25]; 
 
 //reset sctruct 
 void clear_storage(hashedMacBuffer_t storage){
@@ -21,24 +22,22 @@ void visitor_ausgabe(hashedMacBuffer_t storage) {
 void visitor_mac_add(uint16_t hashedmac, int8_t nextPos) {
 
   printf("\nMAC die reinkommt add %i ",hashedmac); 
-
   //minus 1 damit index bei 0 anfängt da counter ab 1 zählt 
   int count = nextPos - 1;
   printf("\nstorage count value %i ", count); 
 
   storage[count]->mac_adr = hashedmac;  
-
   visitor_ausgabe(storage[count]);
+
 }
 
 //return mac to send data 
-int return_visitor_mac(int pos){
+uint16_t return_visitor_mac(int pos){
 
-	int visitor_mac;
-
+	uint16_t visitor_mac;
 	visitor_mac = storage[pos]->mac_adr;
-
 	return visitor_mac;
+  
 }
 
 #endif
