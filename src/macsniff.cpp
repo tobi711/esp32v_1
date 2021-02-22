@@ -168,12 +168,13 @@ uint16_t mac_analyze(MacBuffer_t MacBuffer) {
       //struct anlegen in dem mac adressen aufgenommen werden
       printf("\n Aktueller Counter Stand --> %i ", macs_wifi);
 
-      memcpy(hash_macs, &hashedmac, sizeof(hashedmac));
-      printf("\n macsniff cpp ausgabe von pointer hash_macs * array %i", *hash_macs); 
+      //memcpy(hash_macs, &hashedmac, sizeof(hashedmac));
+      //printf("\n macsniff cpp ausgabe von pointer hash_macs * array %i", *hash_macs); 
+      if (macs_wifi <= 25){
+        printf("\n macsniff cpp ausgabe von hashdemac %i", hashedmac); 
+        visitor_mac_add(hashedmac,macs_wifi);
+      }
 
-      printf("\n macsniff cpp ausgabe von hashdemac %i", hashedmac); 
-      visitor_mac_add(hashedmac,macs_wifi);
-      
       break;
 
     case MAC_SNIFF_BLE:
