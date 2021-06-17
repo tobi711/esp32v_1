@@ -451,7 +451,7 @@ void dp_drawPage(time_t t, bool nextpage) {
     dp_setTextCursor(0, 3);
     dp_printf("Besucherstrom");
     dp_setTextCursor(0, 4);
-    dp_printf("Messstation 2");
+    dp_printf("Messstation 1");
 
     dp_setTextCursor(0, 6);
     dp_printf("%02d:%02d:%02d", hour(t), minute(t), second(t));
