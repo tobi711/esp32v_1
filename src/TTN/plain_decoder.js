@@ -90,12 +90,12 @@ function Decoder(bytes, port) {
     }
   }
 
-  // User data + with for loop 
+  // MAC User data on port 11 + Array with loop 
   if (port === 11) {
 
     var i = 0;
     
-    // 16 MACs = 32 Bytes 
+    // 25 MACs = 50 Bytes 
     if (bytes.length >= 2) {
 
     decoded.macsBuffer = []
