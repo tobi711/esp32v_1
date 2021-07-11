@@ -175,23 +175,26 @@ void sendData() {
 
       payload.reset();
      
-      //payload.addMacAdr(*hash_macs, MAC_SNIFF_WIFI);
-
       uint16_t mac_Adresse; 
-      //sende nur die nötigen bytes keine leere bytes 
-      //nur neue Werte einfügen länge der neuen Werte 
- 
-      if(maxPayloadBytes <= 25){
-        for(int i = 0; i < maxPayloadBytes; i++){
-        mac_Adresse = return_visitor_mac(i);
-        printf("\n--------->>> MAC adresse Storage %i ", mac_Adresse); 
-        payload.addMacAdr(mac_Adresse, MAC_SNIFF_WIFI);      
-        } 
-      }
-      else{
-        printf("\nSend Data Buffer voll");
-      }
+      //sende nur die nötigen bytes, keine leere bytes 
 
+
+      if (maxPayloadBytes <= 25){
+        for(int i = 0; i < maxPayloadBytes; i++){
+          mac_Adresse = return_visitor_mac(i);
+          printf("\n--------->>> MAC adresse Storage %i ", mac_Adresse); 
+          payload.addMacAdr(mac_Adresse, MAC_SNIFF_WIFI);
+        }
+      }
+      else {
+        for(int i = 0; i < 25; i++){
+          mac_Adresse = return_visitor_mac(i);
+          printf("\n--------->>> MAC adresse Storage %i ", mac_Adresse); 
+          payload.addMacAdr(mac_Adresse, MAC_SNIFF_WIFI);
+        }
+      }
+      
+      
       SendPayload(SENSOR2PORT);
 
       //clear_storage(storage);
